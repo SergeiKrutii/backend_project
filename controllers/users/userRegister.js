@@ -5,7 +5,12 @@ const { HttpError } = require("../../helpers");
 require("dotenv").config();
 
 const register = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, equalPassword } = req.body;
+  console.log("🚀 ~ req.body:", req.body);
+
+  if (password !== equalPassword) {
+    throw HttpError(409, "Wrong password");
+  }
   const user = await User.findOne({ email });
 
   if (user) {
