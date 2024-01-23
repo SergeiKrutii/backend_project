@@ -5,29 +5,44 @@ const { goalsDateConfig } = require("../helpers");
 const { handleMongooseError } = require("../helpers");
 
 const goalsSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "user",
-  },
   startDate: {
-    type: String,
-    default: "",
+    type: Date,
+    default: null,
   },
   endDate: {
-    type: String,
-    default: "",
+    type: Date,
+    default: null,
+  },
+  isGoalAchieved: {
+    type: Boolean,
+    default: false,
+  },
+  isGoalTimeOut: {
+    type: Boolean,
+    default: false,
+  },
+  updatedBooks: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "books",
+    },
+  ],
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "users",
   },
 });
 
 goalsSchema.post("save", handleMongooseError);
 
 const addGoalsSchema = Joi.object({
-  startDate: Joi.string()
-    .custom((value, helpers) => goalsDateConfig(value, helpers))
+  startDate: Joi.date()
+    // .custom((value, helpers) => goalsDateConfig(value, helpers))
     .required(),
-  endDate: Joi.string()
-    .custom((value, helpers) => goalsDateConfig(value, helpers))
+  endDate: Joi.date()
+    // .custom((value, helpers) => goalsDateConfig(value, helpers))
     .required(),
+  booksId: Joi.array(),
 });
 
 const Goal = model("goals", goalsSchema);

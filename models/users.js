@@ -21,9 +21,9 @@ const userSchema = new Schema({
     type: String,
     default: null,
   },
-  goals: {
-    amount_books: { type: Number, default: 0 },
-    amount_days: { type: Number, default: 0 },
+  haveGoal: {
+    type: Boolean,
+    default: false,
   },
 });
 

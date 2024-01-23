@@ -8,18 +8,12 @@ router.get("/", isValidToken, ctrl.getAllUserBook);
 router.get("/:bookId", isValidToken, isValidId, ctrl.getBookById);
 router.post("/", isValidToken, validateBody(addBookSchema), ctrl.addBook);
 router.delete("/:bookId", isValidId, ctrl.deleteBook);
-
 router.put(
   "/:bookId",
   isValidId,
   validateBody(updateRatingBookSchema),
   ctrl.addRatingBook
 );
-// router.patch(
-//   "/",
-//   isValidId,
-//   validateBody(updateFavoriteSchema),
-//   ctrl.updateStatusContact
-// );
+router.patch("/:bookId", isValidId, ctrl.updateStatusBook);
 
 module.exports = router;

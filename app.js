@@ -6,6 +6,7 @@ require("dotenv").config();
 const booksRouter = require("./routes/api/books");
 const usersRouter = require("./routes/api/users");
 const goalsRouter = require("./routes/api/goals");
+const resultRouter = require("./routes/api/result");
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/api/books", booksRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/goals", goalsRouter);
+app.use("/api/result", resultRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

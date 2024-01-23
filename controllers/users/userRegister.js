@@ -6,7 +6,6 @@ require("dotenv").config();
 
 const register = async (req, res) => {
   const { email, password, equalPassword } = req.body;
-  console.log("🚀 ~ req.body:", req.body);
 
   if (password !== equalPassword) {
     throw HttpError(409, "Wrong password");
