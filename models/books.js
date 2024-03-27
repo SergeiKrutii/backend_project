@@ -30,7 +30,7 @@ const booksSchema = new Schema({
     default: "Маю намір прочитати",
   },
   rating: {
-    stars: { type: String, default: "" },
+    stars: { type: Number, default: 0 },
     resume: { type: String, default: "" },
   },
   user: {
@@ -53,8 +53,8 @@ const addBookSchema = Joi.object({
 });
 
 const updateRatingBookSchema = Joi.object({
-  stars: Joi.string().required(),
-  resume: Joi.string().required(),
+  stars: Joi.number().allow(0),
+  resume: Joi.string().allow(""),
 });
 
 module.exports = {

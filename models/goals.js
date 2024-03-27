@@ -21,6 +21,10 @@ const goalsSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  isTraningBegin: {
+    type: Boolean,
+    default: false,
+  },
   updatedBooks: [
     {
       type: Schema.Types.ObjectId,

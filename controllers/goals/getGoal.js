@@ -5,7 +5,9 @@ const addGoal = async (req, res) => {
 
   const myGoal = await Goal.find({ user: _id }).populate("updatedBooks").exec();
 
-  res.status(200).json(myGoal[myGoal.length - 1]);
+  const lastGoal = myGoal[myGoal.length - 1];
+
+  res.status(200).json(lastGoal);
 };
 
 module.exports = addGoal;
