@@ -8,7 +8,7 @@ const getAllUserBook = async (req, res) => {
 
   const result = await Book.find({ user });
 
-  if (!result) throw HttpError(403);
+  if (!result) throw HttpError(401);
 
   res.json(result);
 };

@@ -1,6 +1,5 @@
 const Joi = require("joi");
 const { Schema, model } = require("mongoose");
-const { goalsDateConfig } = require("../helpers");
 
 const { handleMongooseError } = require("../helpers");
 
@@ -40,12 +39,8 @@ const goalsSchema = new Schema({
 goalsSchema.post("save", handleMongooseError);
 
 const addGoalsSchema = Joi.object({
-  startDate: Joi.date()
-    // .custom((value, helpers) => goalsDateConfig(value, helpers))
-    .required(),
-  endDate: Joi.date()
-    // .custom((value, helpers) => goalsDateConfig(value, helpers))
-    .required(),
+  startDate: Joi.date().required(),
+  endDate: Joi.date().required(),
   booksId: Joi.array(),
 });
 
