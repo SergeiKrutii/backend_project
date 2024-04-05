@@ -13,7 +13,7 @@ const bookDateConfig = (value, helpers) => {
   const isValidDate = dateRegex.test(value);
   if (!isValidDate) {
     return helpers.message({
-      custom: "Invalid 'date'. Please, use YYYY",
+      custom: "Неправильно вказаний рік. Рік повивенен повинен мати 4 цифри.",
     });
   }
   return value;
