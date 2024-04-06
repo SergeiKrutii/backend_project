@@ -1,6 +1,7 @@
 const Joi = require("joi");
 const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../helpers");
+const moment = require("moment-timezone");
 
 const resultSchema = new Schema({
   goal: {
@@ -15,13 +16,10 @@ const resultSchema = new Schema({
       },
       time: {
         type: String,
-        default: () =>
-          new Date().toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-            hour12: false,
-          }),
+        default: () => {
+          const kievTime = moment.tz("Europe/Kiev").format("HH:mm:ss");
+          return kievTime;
+        },
       },
       pageAmount: {
         type: String,
